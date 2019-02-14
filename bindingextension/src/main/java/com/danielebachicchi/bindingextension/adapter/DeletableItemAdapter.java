@@ -30,6 +30,7 @@ public abstract class DeletableItemAdapter<ITEM,VIEWHOLDER extends MyViewHolder<
     private LayoutInflater _inflater;
     private int _maxSelectable = 1;
     private List<ITEM> _selectedItems;
+    private IAdapterItemListener<ITEM> _listener;
 
     private View _lastViewClicked;
 
@@ -130,10 +131,15 @@ public abstract class DeletableItemAdapter<ITEM,VIEWHOLDER extends MyViewHolder<
     public void onItemClick(ITEM item, View v, MyViewHolder holder) {
         _lastViewClicked = v;
         if(_maxSelectable < 0 || _selectedItems.size() < _maxSelectable){
-            if(isItemSelected(item))
+            if(isItemSelected(item)) {
                 removeSelected(item, holder);
-            else
+                if(_listener != null)
+                    _listener.onItemDeselected(item);
+            }else {
                 addSelected(item, holder);
+                if(_listener != null)
+                    _listener.onItemSelected(item);
+            }
         }
     }
     public void addSelected(ITEM item){
@@ -160,6 +166,10 @@ public abstract class DeletableItemAdapter<ITEM,VIEWHOLDER extends MyViewHolder<
             }
         }
         return false;
+    }
+
+    public void set_itemListener(IAdapterItemListener<ITEM> _listener) {
+        this._listener = _listener;
     }
 
     protected boolean areItemsEquals(ITEM i1, ITEM i2){

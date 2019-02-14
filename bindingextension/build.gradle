@@ -11,7 +11,7 @@ ext{
 
     publishedGroupId = 'com.danielebachicchi'
     artifact = 'bindingextension'
-    libraryVersion = '0.0.2'
+    libraryVersion = '0.0.4'
 
     libraryDescription = 'Utility classes for Databinding'
     siteUrl = ''
@@ -34,8 +34,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 2
-        versionName "0.0.2"
+        versionCode 4
+        versionName "0.0.4"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
