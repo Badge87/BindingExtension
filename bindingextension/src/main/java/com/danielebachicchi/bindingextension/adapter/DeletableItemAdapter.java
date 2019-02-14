@@ -34,7 +34,7 @@ public abstract class DeletableItemAdapter<ITEM,VIEWHOLDER extends MyViewHolder<
     private View _lastViewClicked;
 
 
-     DeletableItemAdapter(List<ITEM> data, Context context, View rootSnackBar) {
+     public DeletableItemAdapter(List<ITEM> data, Context context, View rootSnackBar) {
         super();
         _context = context;
         _rootSnackbar = rootSnackBar;
@@ -43,6 +43,9 @@ public abstract class DeletableItemAdapter<ITEM,VIEWHOLDER extends MyViewHolder<
         _inflater = LayoutInflater.from(context);
         _selectedItems = new ArrayList<>();
 
+    }
+    public DeletableItemAdapter(List<ITEM> data, Context context) {
+         this(data,context,null);
     }
 
     @Override
