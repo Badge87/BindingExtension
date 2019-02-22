@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MyViewHolder<ITEM,BINDING extends ViewDataBinding> extends RecyclerView.ViewHolder {
     private final BINDING binding;
     private boolean _select;
+    private ITEM _item;
 
 
     public MyViewHolder(BINDING binding) {
@@ -21,6 +22,7 @@ public class MyViewHolder<ITEM,BINDING extends ViewDataBinding> extends Recycler
     }
 
     public void bind(ITEM obj, IItemClickHandler<ITEM> clickHandler) {
+        _item = obj;
         binding.setVariable(BR.obj, obj);
         binding.executePendingBindings();
         if(clickHandler != null)
@@ -30,6 +32,10 @@ public class MyViewHolder<ITEM,BINDING extends ViewDataBinding> extends Recycler
     public void set_select(boolean select) {
         this._select = select;
         binding.setVariable(BR.select,_select);
+    }
+
+    public ITEM get_item() {
+        return _item;
     }
 
     public boolean is_select() {
