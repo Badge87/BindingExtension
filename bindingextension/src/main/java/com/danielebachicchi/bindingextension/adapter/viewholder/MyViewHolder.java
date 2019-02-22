@@ -38,6 +38,10 @@ public class MyViewHolder<ITEM,BINDING extends ViewDataBinding> extends Recycler
         return _item;
     }
 
+    public BINDING getBinding() {
+        return binding;
+    }
+
     public boolean is_select() {
         return _select;
     }
